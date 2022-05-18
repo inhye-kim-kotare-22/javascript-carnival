@@ -5,21 +5,28 @@
 console.log('Inflate The Unicorn!')
 
 let unicorns = document.getElementsByClassName('inflate-an-image')
-var currentUnicorn = 0
+
+var currentUnicorn = [0, 0, 0]
+
+function changeUnicorn(e) {
+  let unicorn = e.target
+  let unicornIndex
+  if (unicorn.id == 'uni0') {
+    unicornIndex = 0
+  } else if (unicorn.id == 'uni1') {
+    unicornIndex = 1
+  } else if (unicorn.id == 'uni2') {
+    unicornIndex = 2
+  }
+  if (currentUnicorn[unicornIndex] < 3) {
+    currentUnicorn[unicornIndex]++
+  }
+  if (currentUnicorn[unicornIndex] == 3) {
+    alert('Thank you unicorn ' + unicornIndex)
+  }
+  unicorn.src = './images/unicorn-' + currentUnicorn[unicornIndex] + '.png'
+}
 
 for (let i = 0; i < unicorns.length; i++) {
-  console.log(unicorns)
-  unicorns[i].onclick = function () {
-    console.log('clicked')
-    if (currentUnicorn == 0) {
-      unicorns[0].src = './images/unicorn-1.png'
-      currentUnicorn = 1
-    } else if (currentUnicorn == 1) {
-      unicorns[1].src = './images/unicorn-2.png'
-      currentUnicorn = 2
-    } else if (currentUnicorn == 2) {
-      unicorns[2].src = './images/unicorn-3.png'
-      currentUnicorn = 3
-    } else if (currentUnicorn == 3) alert('Unicorn Number 3 says thank you!')
-  }
+  unicorns[i].onclick = changeUnicorn
 }

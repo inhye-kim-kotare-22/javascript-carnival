@@ -21,4 +21,6 @@ function clickWhack(e) {
   console.log('click')
   mole.remove()
   showMole()
+  var audio = new Audio('./whack-audio.wav')
+  audio.play()
 }
